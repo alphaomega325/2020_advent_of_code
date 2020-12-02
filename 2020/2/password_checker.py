@@ -14,12 +14,12 @@ def main():
         lower = int(numbers[0])
         upper = int(numbers[1])
         elements = password_line[1]
-        elements = elements.split(':')
+        elements = elements[0]
         password = password_line[2]
-        if(password_check(lower, upper, elements[0], password)):
+        if(password_check(lower, upper, elements, password)):
             number_of_valid_passwords = number_of_valid_passwords + 1
 
-        if(password_check_index(lower, upper, elements[0], password)):
+        if(password_check_index(lower, upper, elements, password)):
             number_of_valid_passwords_index = number_of_valid_passwords_index + 1
 
     print(f"First Solution: {number_of_valid_passwords} \nSecond Solution: {number_of_valid_passwords_index}")
