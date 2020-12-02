@@ -1,12 +1,10 @@
 #Python implementation for the python checker in the Advent of code 2020
-import pdb
 
 def main():
     file = open("passwords.txt", "r")
     number_of_valid_passwords = 0
     passwords = file.readlines()
     file.close()
-    pdb.set_trace()
     for password_line in passwords:
        password_line = password_line.strip()
        password_line = password_line.split(' ')
