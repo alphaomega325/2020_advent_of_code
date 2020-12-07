@@ -49,30 +49,28 @@ def main():
 
         if(seat_id > highest_seat_id):
             highest_seat_id = seat_id
-        print(f"{seat}: row {rows}, column {columns}, seat ID {seat_id}")
+
         seats.append({"Seat":seat, "Row":rows, "Column":columns, "Seat ID":seat_id})
             
 
     print(f"Highest Seat ID {highest_seat_id}")
-    print(f"Highest Seat ID without the front and back rows is {show_highest_seat_id(seats)}")
+    print(f"Missing Seat ID without the front and back rows is {show_missing_seat_id(seats)}")
     
-def show_highest_seat_id(seats):
+def show_missing_seat_id(seats):
     highest = lowest = seats[0]["Row"]
     for item in seats:
         if(lowest > item["Row"]):
             lowest = item["Row"]
         elif(highest < item["Row"]):
             highest = item["Row"]
-
-    highest_seat_id = 0
-
-    for item in seats:
-        if(highest_seat_id < item["Seat ID"] and highest != item["Row"] and lowest != item["Row"]):
-            highest_seat_id = item["Seat ID"]
-
-    return highest_seat_id
-
-
+            
+    seats.sort(key=lambda item: item.get("Seat ID"))
+    missing_seats = []
+    
+    for i in range(len(seats)):
+        if(highest != seats[i]["Row"] and lowest != seats[i]["Row"]):
+            if(seats[i]["Seat ID"] + 1 != seats[i+1]["Seat ID"]):
+                 return seats[i]["Seat ID"]  + 1
 
 
 if __name__ == "__main__":
